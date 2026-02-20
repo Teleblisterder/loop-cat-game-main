@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public AudioSource sesKaynagý;
     public AudioClip klikSesi;
 
-    public CanvasGroup canvasGroup;
+    public CanvasGroup oyunCanvas;
     public CanvasGroup ozelResimCanvasGroup;
 
 
@@ -163,36 +163,40 @@ public class GameManager : MonoBehaviour
 
 
     }
+    private Coroutine gecisSüreci;
+
     public void SonrakiSoruyaGec()
     {
-        StopAllCoroutines();
-        StartCoroutine(SoruGecisSureci());
+        // Eðer zaten bir geçiþ varsa (coroutine çalýþýyorsa) yeni bir tane baþlatma!
+        if (gecisSüreci != null) return;
 
-        
+        // Coroutine referansýný burada ata
+        gecisSüreci = StartCoroutine(SoruGecisSureci());
     }
+
     private IEnumerator SoruGecisSureci()
     {
+        // BURADAKÝ StartCoroutine satýrýný sildik! 
+        // Çünkü metodu yukarýda zaten baþlattýk.
 
-        float kapanmaSuresi = 0.3f;
+        // 1. ADIM: Her þeyi karart
+        oyunCanvas.interactable = false;
+        oyunCanvas.blocksRaycasts = false;
 
-        if (SecenekAÖzelResim.sprite != null && SecenekAÖzelResim.sprite.name == "öldün ekraný_0")
-        {
-            if (SecenekAÖzelResim.sprite != null && SecenekAÖzelResim.sprite.name == "öldün ekraný_0")
-            {
-                kapanmaSuresi = 0f;
-            }
-        }
+        // Fade iþlemlerini baþlat ve bitmelerini bekle
+        Coroutine f1 = StartCoroutine(FadeCanvas(oyunCanvas, 0f, 0.3f));
+        Coroutine f2 = StartCoroutine(FadeCanvas(ozelResimCanvasGroup, 0f, 0.3f));
 
+        yield return f1;
+        yield return f2;
 
-        StartCoroutine(FadeCanvas(canvasGroup,0f, 0.3f));
-        yield return StartCoroutine(FadeCanvas(ozelResimCanvasGroup, 0f, kapanmaSuresi));
-
-        // 2. ADIM: UI ayarlarýný yap (Panel tamamen kapandýktan sonra)
+        // 2. ADIM: UI ayarlarýný yap (Görünmezken arkada hazýrla)
         tamEkranDevamButonu.SetActive(false);
         AButonlarPaneli.SetActive(true);
         BButonlarPaneli.SetActive(true);
-        AButonlarPaneli.GetComponent<UIScaleChanger>().ResetScale();
-        BButonlarPaneli.GetComponent<UIScaleChanger>().ResetScale();
+
+        if (AButonlarPaneli.TryGetComponent(out UIScaleChanger sA)) sA.ResetScale();
+        if (BButonlarPaneli.TryGetComponent(out UIScaleChanger sB)) sB.ResetScale();
 
         // 3. ADIM: Soruyu güncelle
         if (sonrakiSoruDeposu == null)
@@ -200,17 +204,22 @@ public class GameManager : MonoBehaviour
         else
             MevcutSoruyuGuncelle(sonrakiSoruDeposu);
 
-        // 4. ADIM: Yeni soruyu yavaþça göster (0.2 saniye sürsün)
-        yield return StartCoroutine(FadeCanvas(canvasGroup,1f, 0.3f));
-        canvasGroup.interactable = true;
-        canvasGroup.blocksRaycasts = true;
-    }
+        yield return new WaitForSecondsRealtime(0.1f);
 
+        // 4. ADIM: Yeni soruyu yavaþça göster
+        yield return StartCoroutine(FadeCanvas(oyunCanvas, 1f, 0.3f));
+
+        oyunCanvas.interactable = true;
+        oyunCanvas.blocksRaycasts = true;
+
+        // Ýþlem bittiði için referansý null yapýyoruz ki bir sonraki týklama çalýþabilsin
+        gecisSüreci = null;
+    }
     private IEnumerator FadeCanvas(CanvasGroup cg, float targetAlpha, float duration)
     {
-        if (cg == null || !cg.gameObject.activeInHierarchy && targetAlpha <= 0)
+        if (targetAlpha > 0 && !cg.gameObject.activeInHierarchy)
         {
-            yield break;
+            cg.gameObject.SetActive(true);
         }
 
         if (cg == null) yield break;

@@ -4294,7 +4294,7 @@ MonoBehaviour:
   tamEkranDevamButonu: {fileID: 961598735}
   "sesKaynag\u0131": {fileID: 1757998495}
   klikSesi: {fileID: 8300000, guid: 1aee9d11c3d44874bb008e5ccc2daad9, type: 3}
-  canvasGroup: {fileID: 1178762741}
+  oyunCanvas: {fileID: 1178762741}
   ozelResimCanvasGroup: {fileID: 989734702}
 --- !u!4 &1678823098
 Transform:
