@@ -6,21 +6,25 @@ public class VolumeControl : MonoBehaviour
 {
     public AudioMixer mixer;
     public Slider slider;
-
+    private string volumeParam = "MyExposedVolume";
     void Start()
     {
-        // Slider'ýn baþlangýç deðerini mevcut ses seviyesine eþitleyelim
-        float value;
-        mixer.GetFloat("MyExposedVolume", out value);
-        slider.value = value;
+        
 
-        // Slider deðiþtikçe fonksiyonu çaðýr
+        // 2. Mevcut dB deðerini al ve Slider'ýn anlayacaðý 0-1 arasýna çevir
+        float currentDB;
+        if (mixer.GetFloat(volumeParam, out currentDB))
+        {
+            // dB'den lineer (0-1) deðere ters dönüþüm: 10^(dB/20)
+            slider.value = Mathf.Pow(10, currentDB / 20);
+        }
+
         slider.onValueChanged.AddListener(SetLevel);
     }
 
     public void SetLevel(float sliderValue)
     {
-        // Mixer'daki parametreyi günceller
-        mixer.SetFloat("MyExposedVolume", sliderValue);
+        float dB = Mathf.Log10(sliderValue) * 20;
+        mixer.SetFloat(volumeParam, dB);
     }
 }

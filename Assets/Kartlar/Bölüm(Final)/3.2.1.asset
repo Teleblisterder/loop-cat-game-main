@@ -22,13 +22,14 @@ MonoBehaviour:
   secenekAResmi: {fileID: -1035415673213467966, guid: 495e59af5f8f48943b8c6d6caeac7e7b, type: 3}
   secenekA_CanEtkisi: 0
   secenekA_AcclikEtkisi: 0
+  "SecenekA\xD6zelResim": {fileID: 0}
   secenekBMetni: "I\u015F\u0131\u011Fa do\u011Fru git"
   secenekBSonucu: {fileID: 0}
-  secenekBSonucMetni: "Yakla\u015F\u0131rken havai fi\u015Fekler patlad\u0131 ve
-    onlara kitlendin ve o s\u0131ra yol \xFCzerinden ge\xE7en bir araba sana \xE7arpt\u0131,
-    \xF6ld\xFCn."
+  secenekBSonucMetni: "Sen havai fi\u015Fekleri izlerken yoldan ge\xE7en bir araba
+    sana \xE7arpt\u0131, \xF6ld\xFCn."
   secenekBResmi: {fileID: -1688431707379574793, guid: b36f58fcc3bf6cd4cb00a4e36207fbdb, type: 3}
   secenekB_CanEtkisi: 0
   secenekB_AcclikEtkisi: 0
+  "SecenekB\xD6zelResim": {fileID: -9125087648364395341, guid: bf31182f03fcafc48a9b4ebd81166b05, type: 3}
   olumculMu: 0
   Background: {fileID: 1286465603081698306, guid: c70e484a53d627c4489f133945b35396, type: 3}

@@ -20,11 +20,13 @@ MonoBehaviour:
   secenekAResmi: {fileID: 353271502081839912, guid: 43e439689e6105646b1e58f3f02367fc, type: 3}
   secenekA_CanEtkisi: 0
   secenekA_AcclikEtkisi: 0
+  "SecenekA\xD6zelResim": {fileID: -9125087648364395341, guid: bf31182f03fcafc48a9b4ebd81166b05, type: 3}
   secenekBMetni: "Ko\u015Farak ka\xE7"
   secenekBSonucu: {fileID: 11400000, guid: cc51edfadf0a91046982e2ce0a8de3f4, type: 2}
   secenekBSonucMetni: "Mahallenin kanalizasyonuna g\xFCvenle vardn"
   secenekBResmi: {fileID: 4285695496039379445, guid: 911d7bceae2c12f49aad5880e7d44e71, type: 3}
   secenekB_CanEtkisi: 0
   secenekB_AcclikEtkisi: 0
+  "SecenekB\xD6zelResim": {fileID: 0}
   olumculMu: 0
   Background: {fileID: 1337534228664977836, guid: 68e31928bf50ed14697c8eab5a36cbce, type: 3}
