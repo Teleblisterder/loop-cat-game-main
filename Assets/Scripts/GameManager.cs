@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
     public Image ButtonAImage;
     public Image ButtonBImage;
     public Image Background;
+    public Image SecenekAÖzelResim;
+    public Image SecenekBÖzelResim;
+
+    public GameObject özelResimPaneli;
+
 
 
     public PlayerStats playerStats;
@@ -30,6 +36,11 @@ public class GameManager : MonoBehaviour
 
     public AudioSource sesKaynagý;
     public AudioClip klikSesi;
+
+    public CanvasGroup oyunCanvas;
+    public CanvasGroup ozelResimCanvasGroup;
+
+
 
 
     void Start()
@@ -55,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void MevcutSoruyuGuncelle(Sorular yeniSoru)
     {
+
         mevcutSoru = yeniSoru;
         soruText.text = mevcutSoru.soruMetni;
         butonAText.text = mevcutSoru.secenekAMetni;
@@ -62,6 +74,9 @@ public class GameManager : MonoBehaviour
         ButtonBImage.sprite = mevcutSoru.secenekBResmi;
         butonBText.text = mevcutSoru.secenekBMetni;
         Background.sprite = mevcutSoru.Background;
+        
+;
+        
     }
 
     public void SecimYap(bool secenekA_Mi)
@@ -87,6 +102,11 @@ public class GameManager : MonoBehaviour
                 MevcutSoruyuGuncelle(HastalýktanÖl);
                 return;
             }
+            if (mevcutSoru.SecenekAÖzelResim != null)
+            {
+                StartCoroutine(FadeCanvas(ozelResimCanvasGroup, 1f, 0.3f));
+                SecenekAÖzelResim.sprite = mevcutSoru.SecenekAÖzelResim;
+            }
             CevabýGöster(false);
         }
         else
@@ -104,6 +124,12 @@ public class GameManager : MonoBehaviour
             {
                 MevcutSoruyuGuncelle(HastalýktanÖl); 
                 return;
+            }
+            if (mevcutSoru.SecenekBÖzelResim != null)
+            {
+                StartCoroutine(FadeCanvas(ozelResimCanvasGroup, 1f, 0.3f));
+                SecenekBÖzelResim.sprite = mevcutSoru.SecenekBÖzelResim;
+
             }
             CevabýGöster(true);
 
@@ -133,22 +159,105 @@ public class GameManager : MonoBehaviour
             AButonlarPaneli.SetActive(false);
             BButonlarPaneli.GetComponent <UIScaleChanger>().LockScale();
         }
+        
 
 
     }
+    private Coroutine gecisSüreci;
+
     public void SonrakiSoruyaGec()
     {
+        // Eðer zaten bir geçiþ varsa (coroutine çalýþýyorsa) yeni bir tane baþlatma!
+        if (gecisSüreci != null) return;
 
+        // Coroutine referansýný burada ata
+        gecisSüreci = StartCoroutine(SoruGecisSureci());
+    }
+
+    private IEnumerator SoruGecisSureci()
+    {
+        // BURADAKÝ StartCoroutine satýrýný sildik! 
+        // Çünkü metodu yukarýda zaten baþlattýk.
+
+        // 1. ADIM: Her þeyi karart
+        oyunCanvas.interactable = false;
+        oyunCanvas.blocksRaycasts = false;
+
+        // Fade iþlemlerini baþlat ve bitmelerini bekle
+        Coroutine f1 = StartCoroutine(FadeCanvas(oyunCanvas, 0f, 0.3f));
+        Coroutine f2 = StartCoroutine(FadeCanvas(ozelResimCanvasGroup, 0f, 0.3f));
+
+        yield return f1;
+        yield return f2;
+
+        // 2. ADIM: UI ayarlarýný yap (Görünmezken arkada hazýrla)
         tamEkranDevamButonu.SetActive(false);
         AButonlarPaneli.SetActive(true);
         BButonlarPaneli.SetActive(true);
 
-        AButonlarPaneli.GetComponent<UIScaleChanger>().ResetScale();
-        BButonlarPaneli.GetComponent<UIScaleChanger>().ResetScale();
+        if (AButonlarPaneli.TryGetComponent(out UIScaleChanger sA)) sA.ResetScale();
+        if (BButonlarPaneli.TryGetComponent(out UIScaleChanger sB)) sB.ResetScale();
 
+        // 3. ADIM: Soruyu güncelle
         if (sonrakiSoruDeposu == null)
             YenidenBaslat();
         else
             MevcutSoruyuGuncelle(sonrakiSoruDeposu);
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        // 4. ADIM: Yeni soruyu yavaþça göster
+        yield return StartCoroutine(FadeCanvas(oyunCanvas, 1f, 0.3f));
+
+        oyunCanvas.interactable = true;
+        oyunCanvas.blocksRaycasts = true;
+
+        // Ýþlem bittiði için referansý null yapýyoruz ki bir sonraki týklama çalýþabilsin
+        gecisSüreci = null;
     }
+    private IEnumerator FadeCanvas(CanvasGroup cg, float targetAlpha, float duration)
+    {
+        if (targetAlpha > 0 && !cg.gameObject.activeInHierarchy)
+        {
+            cg.gameObject.SetActive(true);
+        }
+
+        if (cg == null) yield break;
+
+        float currentTime = 0f;
+        float startAlpha = cg.alpha;
+
+        if (duration <= 0)
+        {
+            cg.alpha = targetAlpha;
+        }
+
+        // Eðer beliriyorsa (Fade In)
+        if (targetAlpha > 0)
+        {
+            cg.gameObject.SetActive(true); // Kapalýysa aç
+            cg.interactable = true;
+            cg.blocksRaycasts = true;
+
+        }
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.unscaledDeltaTime; // Oyun durursa bile çalýþsýn
+            cg.alpha = Mathf.Lerp(startAlpha, targetAlpha, currentTime / duration);
+            yield return null;
+        }
+
+        cg.alpha = targetAlpha;
+
+        // Eðer yok olduysa (Fade Out)
+        if (targetAlpha <= 0)
+        {
+            cg.interactable = false;
+            cg.blocksRaycasts = false;
+            // Ýstersen tamamen kapatabilirsin: 
+            // canvasGroup.gameObject.SetActive(false); 
+        }
+    }
+
 }

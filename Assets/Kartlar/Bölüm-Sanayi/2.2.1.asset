@@ -19,6 +19,7 @@ MonoBehaviour:
   secenekAResmi: {fileID: 8331247514130816974, guid: bf0e774d7608af3449144627d4eaeadc, type: 3}
   secenekA_CanEtkisi: 0
   secenekA_AcclikEtkisi: 1
+  "SecenekA\xD6zelResim": {fileID: 0}
   secenekBMetni: "Yol \xFCzerinde denk geldi\u011Fin restar\u0131n\u0131n \xF6n\xFCnde
     yemeka ra"
   secenekBSonucu: {fileID: 0}
@@ -26,5 +27,6 @@ MonoBehaviour:
   secenekBResmi: {fileID: 353271502081839912, guid: 43e439689e6105646b1e58f3f02367fc, type: 3}
   secenekB_CanEtkisi: 0
   secenekB_AcclikEtkisi: 0
+  "SecenekB\xD6zelResim": {fileID: -9125087648364395341, guid: bf31182f03fcafc48a9b4ebd81166b05, type: 3}
   olumculMu: 0
   Background: {fileID: 1337534228664977836, guid: 68e31928bf50ed14697c8eab5a36cbce, type: 3}

@@ -18,12 +18,14 @@ MonoBehaviour:
   secenekASonucMetni: 
   secenekAResmi: {fileID: -4659419435084869936, guid: ba0b42069f79ac64684c4b9a82be458c, type: 3}
   secenekA_CanEtkisi: 0
-  secenekA_AcclikEtkisi: 0
+  secenekA_AcclikEtkisi: -1
+  "SecenekA\xD6zelResim": {fileID: 0}
   secenekBMetni: "Bah\xE7elerden ge\xE7meye \xE7al\u0131\u015F"
   secenekBSonucu: {fileID: 11400000, guid: 264bac72d4e86d44993d5449a4a5ab50, type: 2}
   secenekBSonucMetni: 
   secenekBResmi: {fileID: 4613640584336049277, guid: 9ac87ac20e0b93f4db0eeaac3eac93d7, type: 3}
   secenekB_CanEtkisi: 0
   secenekB_AcclikEtkisi: 0
+  "SecenekB\xD6zelResim": {fileID: 0}
   olumculMu: 0
   Background: {fileID: 1286465603081698306, guid: c70e484a53d627c4489f133945b35396, type: 3}
