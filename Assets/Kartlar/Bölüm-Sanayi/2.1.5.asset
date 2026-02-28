@@ -22,8 +22,8 @@ MonoBehaviour:
   "SecenekA\xD6zelResim": {fileID: -9125087648364395341, guid: bf31182f03fcafc48a9b4ebd81166b05, type: 3}
   secenekBMetni: "Ka\xE7"
   secenekBSonucu: {fileID: 11400000, guid: 65c6a0044f28b854fb4b2be524252a91, type: 2}
-  secenekBSonucMetni: "Ka\xE7arken yaraland\u0131n ama k\xF6pekleri bir \u015Fekil
-    atlat\u0131p mahalleye vard\u0131n\n (-1 Sa\u011Fl\u0131k)"
+  secenekBSonucMetni: "Ka\xE7arken yarakand\u0131n ama ba\u015Far\u0131l\u0131 oldun
+    (-1 Sa\u011Fl\u0131k)"
   secenekBResmi: {fileID: -4659419435084869936, guid: ba0b42069f79ac64684c4b9a82be458c, type: 3}
   secenekB_CanEtkisi: -1
   secenekB_AcclikEtkisi: 0

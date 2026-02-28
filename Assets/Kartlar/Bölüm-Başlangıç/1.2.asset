@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a7505cb484d904099fc4ee8349c6f2, type: 3}
   m_Name: 1.2
   m_EditorClassIdentifier: 
-  soruMetni: "Kurtlar senden h\u0131zl\u0131 ko\u015Fuyor\n"
+  soruMetni: "Kurtlar senden h\u0131zl\u0131."
   secenekAMetni: "Yolda bir \xE7al\u0131l\u0131\u011F\u0131n i\xE7ine saklan"
   secenekASonucu: {fileID: 11400000, guid: 6b2f499ee59fe70499a25aadc012527e, type: 2}
   secenekASonucMetni: 
