@@ -20,8 +20,7 @@ MonoBehaviour:
   secenekA_CanEtkisi: 0
   secenekA_AcclikEtkisi: 1
   "SecenekA\xD6zelResim": {fileID: 0}
-  secenekBMetni: "Yol \xFCzerinde denk geldi\u011Fin restar\u0131n\u0131n \xF6n\xFCnde
-    yemeka ra"
+  secenekBMetni: "Yol \xFCzerindeki restoranda yemek ara"
   secenekBSonucu: {fileID: 0}
   secenekBSonucMetni: "K\xF6pekler seni yedi(Onlarda yemek ar\u0131yordu)"
   secenekBResmi: {fileID: 353271502081839912, guid: 43e439689e6105646b1e58f3f02367fc, type: 3}

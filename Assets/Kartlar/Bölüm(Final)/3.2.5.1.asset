@@ -29,6 +29,6 @@ MonoBehaviour:
   secenekBResmi: {fileID: -1688431707379574793, guid: b36f58fcc3bf6cd4cb00a4e36207fbdb, type: 3}
   secenekB_CanEtkisi: 0
   secenekB_AcclikEtkisi: 0
-  "SecenekB\xD6zelResim": {fileID: 0}
+  "SecenekB\xD6zelResim": {fileID: 1233306098332358316, guid: 3b4c20d91c60a034581788cffb4a2c60, type: 3}
   olumculMu: 0
   Background: {fileID: 1286465603081698306, guid: c70e484a53d627c4489f133945b35396, type: 3}

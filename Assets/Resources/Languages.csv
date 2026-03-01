@@ -67,7 +67,7 @@ ana_menu_dilayarlari;DİL;LANGUAGE
 ;Acıktın;You are hungry
 ;Bir çöplükten yemek ara;Search for food in a garbage dump.
 ;Yemek buldun karnını doyurdun;You found food and satisfied your hunger.
-;Yol üzerinde denk geldiğin restarının önünde yemek ara;search for food in front of a restaurant you come across on the road.
+;Yol üzerindeki restoranda yemek ara;search for food in front of a restaurant you come across on the road.
 ;Köpekler seni yedi(Onlarda yemek arıyordu);The dogs ate you (They were looking for food).
 ;Yoluna devam etmen gerek ve bir kanalizasyon fark ettin;You need to keep going and you notice a sewer.
 ;Kanalizasyondan devam et;Continue through the sewer.
@@ -139,7 +139,8 @@ ana_menu_dilayarlari;DİL;LANGUAGE
 gelistiriciler_menu_gelistirici;GELİŞTİRİCİLER;DEVELOPERS
 gelistiriciler_menu_2D;2D ÇİZİM;2D ART
 gelistiriciler_menu_gameD;OYUN TASARIMI;GAME DESIGN
-altyazi_1;;Where the fuck am i?
-altyazi_2;;Wheres is my slaves?(Family)
+altyazi_1;;Where the fuck am I?
+altyazi_2;;Where is my slaves?(Family)
 altyazi_3;;I have to find them
 Ses;SES SEVİYESİ;SOUND LEVEL
+Ozel;ÖZEL TEŞEKKÜR;SPECIAL THANKS
